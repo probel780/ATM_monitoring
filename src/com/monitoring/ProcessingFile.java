@@ -27,9 +27,8 @@ public class ProcessingFile {
         return files;
     }
 
-
-    static AtmBean readFile(File file) {
-        AtmBean atmFileData = new AtmBean();
+    static AtmCassettes readFile(File file) {
+        AtmCassettes atmFileData = new AtmCassettes();
 
         FileReader fr = null;
         Scanner sc = null;
@@ -39,57 +38,51 @@ public class ProcessingFile {
             fr = new FileReader(file);
             sc = new Scanner(fr);
 
-            String fileName = sc.nextLine(); //fileName
-            atmFileData.setFileName(fileName);
-
-            String dateTime = sc.nextLine(); //dateTime
-            atmFileData.setDateTime(dateTime);
-
-            String luno = fileName.substring(0, 6); //luno
-            atmFileData.setLuno(luno);
-
+            String fileName = sc.nextLine();
+            String dateTime = sc.nextLine();
+            String luno = fileName.substring(0, 6);
             sc.nextLine(); //columnName
 
             while (sc.hasNextLine()) {
-                //todo: check empty lines
-                if (sc.nextLine().isEmpty()) {
-                    break;
-                } else {
-                    CassetteBean cassetteData = new CassetteBean();
-                    cassetteData.setLetter(sc.next().charAt(0));
-                    cassetteData.setCurrency(sc.next());
-                    cassetteData.setNominal(sc.nextInt());
-                    cassetteData.setLoad(sc.nextInt());
-                    cassetteData.setDispensed(sc.nextInt());
-                    cassetteData.setRemained(sc.nextInt());
-                    switch (cassetteData.getLetter()) {
-                        case 'A':
-                            atmFileData.setCassetteA(cassetteData);
-                            break;
-                        case 'B':
-                            atmFileData.setCassetteB(cassetteData);
-                            break;
-                        case 'C':
-                            atmFileData.setCassetteC(cassetteData);
-                            break;
-                        case 'D':
-                            atmFileData.setCassetteD(cassetteData);
-                            break;
-                        case 'E':
-                            atmFileData.setCassetteE(cassetteData);
-                            break;
-                        case 'F':
-                            atmFileData.setCassetteF(cassetteData);
-                            break;
-                        case 'G':
-                            atmFileData.setCassetteG(cassetteData);
-                            break;
-                        case 'H':
-                            atmFileData.setCassetteH(cassetteData);
-                            break;
-                        default:
-                            throw new IllegalArgumentException("Invalid letter");
-                    }
+                //todo check empty lines
+                CassetteData cassetteData = new CassetteData();
+                cassetteData.setLuno(luno);
+                cassetteData.setDateTime(dateTime);
+                cassetteData.setLetter(sc.next().charAt(0));
+                cassetteData.setCurrency(sc.next());
+                cassetteData.setNominal(sc.nextInt());
+                cassetteData.setLoad(sc.nextInt());
+                cassetteData.setDispensed(sc.nextInt());
+                cassetteData.setRemained(sc.nextInt());
+                cassetteData.setFileName(fileName);
+
+                switch (cassetteData.getLetter()) {
+                    case 'A':
+                        atmFileData.setCassetteA(cassetteData);
+                        break;
+                    case 'B':
+                        atmFileData.setCassetteB(cassetteData);
+                        break;
+                    case 'C':
+                        atmFileData.setCassetteC(cassetteData);
+                        break;
+                    case 'D':
+                        atmFileData.setCassetteD(cassetteData);
+                        break;
+                    case 'E':
+                        atmFileData.setCassetteE(cassetteData);
+                        break;
+                    case 'F':
+                        atmFileData.setCassetteF(cassetteData);
+                        break;
+                    case 'G':
+                        atmFileData.setCassetteG(cassetteData);
+                        break;
+                    case 'H':
+                        atmFileData.setCassetteH(cassetteData);
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid letter");
                 }
             }
         } catch (IOException ex) {

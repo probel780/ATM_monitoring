@@ -1,13 +1,32 @@
 package com.monitoring;
 
-public class CassetteBean {
+public class CassetteData {
 
+    private String luno;
+    private String dateTime;
     private char letter;
     private String currency;
     private int nominal;
     private int load;
     private int dispensed;
     private int remained;
+    private String fileName;
+
+    public String getLuno() {
+        return luno;
+    }
+
+    public void setLuno(String luno) {
+        this.luno = luno;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
 
     public char getLetter() {
         return letter;
@@ -55,5 +74,13 @@ public class CassetteBean {
 
     public void setRemained(int remained) {
         this.remained = remained;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

@@ -37,7 +37,7 @@ class GenAtmFiles {
                 writer.append("B BYN 10 ").append(String.valueOf(NUM_LOAD_B)).append(" ").append(String.valueOf(dispenseB)).append(" ").append(String.valueOf(NUM_LOAD_B - dispenseB)).append("\r\n");
                 writer.append("C BYN 20 ").append(String.valueOf(NUM_LOAD_C)).append(" ").append(String.valueOf(dispenseC)).append(" ").append(String.valueOf(NUM_LOAD_C - dispenseC)).append("\r\n");
                 writer.append("D BYN 50 ").append(String.valueOf(NUM_LOAD_D)).append(" ").append(String.valueOf(dispenseD)).append(" ").append(String.valueOf(NUM_LOAD_D - dispenseD)).append("\r\n");
-                writer.append("H USD 100 ").append(String.valueOf(NUM_LOAD_H)).append(" ").append(String.valueOf(dispenseH)).append(" ").append(String.valueOf(NUM_LOAD_H - dispenseH)).append("\r\n");
+                writer.append("H USD 100 ").append(String.valueOf(NUM_LOAD_H)).append(" ").append(String.valueOf(dispenseH)).append(" ").append(String.valueOf(NUM_LOAD_H - dispenseH));
                 writer.flush();
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
