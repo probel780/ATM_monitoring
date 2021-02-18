@@ -1,15 +1,79 @@
 package com.monitoring;
 
 public class AtmCassette {
+    private static String luno;
+    private static String dateTime;
+    private static String fileName;
+    private CassetteData cassetteA = new CassetteData();
+    private CassetteData cassetteB = new CassetteData();
+    private CassetteData cassetteC = new CassetteData();
+    private CassetteData cassetteD = new CassetteData();
+    private CassetteData cassetteE = new CassetteData();
+    private CassetteData cassetteF = new CassetteData();
+    private CassetteData cassetteG = new CassetteData();
+    private CassetteData cassetteH = new CassetteData();
 
-    private CassetteData cassetteA;
-    private CassetteData cassetteB;
-    private CassetteData cassetteC;
-    private CassetteData cassetteD;
-    private CassetteData cassetteE;
-    private CassetteData cassetteF;
-    private CassetteData cassetteG;
-    private CassetteData cassetteH;
+    private int index = 0;
+    //todo реализовать метод Iterable
+
+    public CassetteData next() {
+        CassetteData result = null;
+        index++;
+        switch (index) {
+            case 1:
+                result = cassetteA;
+                break;
+            case 2:
+                result = cassetteB;
+                break;
+            case 3:
+                result = cassetteC;
+                break;
+            case 4:
+                result = cassetteD;
+                break;
+            case 5:
+                result = cassetteE;
+                break;
+            case 6:
+                result = cassetteF;
+                break;
+            case 7:
+                result = cassetteG;
+                break;
+            case 8:
+                result = cassetteH;
+                break;
+        }
+        if (result != null && result.isEmpty()) {
+            result = next();
+        }
+        return result;
+    }
+
+    public static String getLuno() {
+        return luno;
+    }
+
+    public void setLuno(String luno) {
+        this.luno = luno;
+    }
+
+    public static String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public static String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
     public CassetteData getCassetteA() {
         return cassetteA;

@@ -11,42 +11,46 @@ public class ReadWriteDb {
     private static ResultSet rs;
 
 
-//    static void writeToDB(AtmCassettes atmFileData) {
-//        try {//#1
-//            Class.forName(driverName);
-//            try {//#2
-//                cn = DriverManager.getConnection(urlDB, "root", "rootpass");
-//            } catch (SQLException e) {
-//                System.out.println("Exception in try #2");
-//                e.printStackTrace();
-//            }
-//            try {//#5
-//                st = cn.createStatement();
-//                try {//#6
-//                    st.executeUpdate("INSERT INTO balans VALUES (NULL, '"
-//                            + atmFileData.getLuno() + "', '"
-//                            + atmFileData.getDateTime() + "', '"
-//                            + atmFileData.getCassetteA().getLetter() + "', '"
-//                            + atmFileData.getCassetteA().getCurrency() + "', '"
-//                            + atmFileData.getCassetteA().getNominal() + "', '"
-//                            + atmFileData.getCassetteA().getLoad() + "', '"
-//                            + atmFileData.getCassetteA().getDispensed() + "', '"
-//                            + atmFileData.getCassetteA().getRemained() + "', '"
-//                            + atmFileData.getFileName() + "')");
-//                } catch (SQLException e) {
-//                    System.out.println("Exception in try #6");
-//                    e.printStackTrace();
-//                }
-//            } catch (SQLException e) {
-//                System.out.println("Exception in try #5");
-//                e.printStackTrace();
-//            }
-//
-//        } catch (ClassNotFoundException e) {
-//            System.out.println("Exception in try #1");
-//            e.printStackTrace();
-//        }
-//    }
+    static void writeToDB(AtmCassette atmFileData) {
+        try {//#1
+            Class.forName(driverName);
+            try {//#2
+                cn = DriverManager.getConnection(urlDB, "root", "rootpass");
+            } catch (SQLException e) {
+                System.out.println("Exception in try #2");
+                e.printStackTrace();
+            }
+            try {//#5
+                st = cn.createStatement();
+                CassetteData cassette = atmFileData.next();
+                while (cassette != null) {
+                    try {//#6
+                        st.executeUpdate("INSERT INTO balans VALUES (NULL, '"
+                                + AtmCassette.getLuno() + "', '"
+                                + AtmCassette.getDateTime() + "', '"
+                                + cassette.getLetter() + "', '"
+                                + cassette.getCurrency() + "', '"
+                                + cassette.getNominal() + "', '"
+                                + cassette.getLoad() + "', '"
+                                + cassette.getDispensed() + "', '"
+                                + cassette.getRemained() + "', '"
+                                + AtmCassette.getFileName() + "')");
+                    } catch (SQLException e) {
+                        System.out.println("Exception in try #6");
+                        e.printStackTrace();
+                    }
+                    cassette = atmFileData.next();
+                }
+            } catch (SQLException e) {
+                System.out.println("Exception in try #5");
+                e.printStackTrace();
+            }
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception in try #1");
+            e.printStackTrace();
+        }
+    }
 //
 //    static void update(String SQLQuery) {
 //

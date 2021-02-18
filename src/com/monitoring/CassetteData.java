@@ -2,37 +2,22 @@ package com.monitoring;
 
 public class CassetteData {
 
-    private String luno;
-    private String dateTime;
-    private char letter;
+    private String letter;
     private String currency;
     private int nominal;
     private int load;
     private int dispensed;
     private int remained;
-    private String fileName;
 
-    public String getLuno() {
-        return luno;
+    public boolean isEmpty() {
+        return getCurrency() == null;
     }
 
-    public void setLuno(String luno) {
-        this.luno = luno;
-    }
-
-    public String getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
-    }
-
-    public char getLetter() {
+    public String getLetter() {
         return letter;
     }
 
-    public void setLetter(char letter) {
+    public void setLetter(String letter) {
         this.letter = letter;
     }
 
@@ -74,13 +59,5 @@ public class CassetteData {
 
     public void setRemained(int remained) {
         this.remained = remained;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 }
