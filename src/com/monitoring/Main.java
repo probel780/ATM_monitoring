@@ -11,8 +11,8 @@ public class Main {
         ArrayList<String> listOfFiles = new ProcessingFile().readDir(dir);
         for (String fileName : listOfFiles) {
             File file = new File(dir + fileName);
-            AtmCassettes atmFileData = ProcessingFile.readFile(file);
-            //todo check empty beans
+            AtmCassette atmFileData = ProcessingFile.readFile(file);
+            //todo check empty cassettes
             CassetteData cassetteA = atmFileData.getCassetteA();
             CassetteData cassetteB = atmFileData.getCassetteB();
             CassetteData cassetteC = atmFileData.getCassetteC();

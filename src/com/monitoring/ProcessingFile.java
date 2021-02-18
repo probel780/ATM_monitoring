@@ -27,21 +27,19 @@ public class ProcessingFile {
         return files;
     }
 
-    static AtmCassettes readFile(File file) {
-        AtmCassettes atmFileData = new AtmCassettes();
-
-        FileReader fr = null;
-        Scanner sc = null;
+    static AtmCassette readFile(File file) {
+        AtmCassette atmFileData = new AtmCassette();
         //todo: make try with resource
 
-        try {
-            fr = new FileReader(file);
-            sc = new Scanner(fr);
+        try (
+                FileReader fr = new FileReader(file);
+                Scanner sc = new Scanner(fr)
+        ) {
 
             String fileName = sc.nextLine();
             String dateTime = sc.nextLine();
             String luno = fileName.substring(0, 6);
-            sc.nextLine(); //columnName
+            sc.nextLine(); //skip columnName string
 
             while (sc.hasNextLine()) {
                 //todo check empty lines
@@ -87,17 +85,6 @@ public class ProcessingFile {
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        } finally {
-            try {
-                if (sc != null) {
-                    sc.close();
-                }
-                if (fr != null) {
-                    fr.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         return atmFileData;
     }

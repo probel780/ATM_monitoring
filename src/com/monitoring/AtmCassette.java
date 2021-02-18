@@ -1,6 +1,6 @@
 package com.monitoring;
 
-public class AtmCassettes {
+public class AtmCassette {
 
     private CassetteData cassetteA;
     private CassetteData cassetteB;
