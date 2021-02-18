@@ -138,4 +138,5 @@ public class AtmCassette {
     public void setCassetteH(CassetteData cassetteH) {
         this.cassetteH = cassetteH;
     }
+
 }
